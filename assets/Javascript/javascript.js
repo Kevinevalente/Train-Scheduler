@@ -43,7 +43,11 @@
 	    row.append(minAwayCol);
 
 	    $("#main-table").append(row);
+
+
 	};
+
+
 
 	// function timeCalc(argument) {
 
@@ -71,8 +75,11 @@
        
 
 		database.ref().on("child_added", function(snapshot) {
+			console.log(snapshot.val());
         }, function(errorObject) {
+        	console.log("errors", errorObject);
       });
+
 
 
 	    $("#addChar").on("click", function(e) {
@@ -90,5 +97,7 @@
 	            first: firstHolder,
 	            frequency: frequencyHolder
 	        });
+
+	        $('#theForm')[0].reset();
 
 	    });
