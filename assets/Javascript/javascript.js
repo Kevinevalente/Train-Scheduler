@@ -1,4 +1,14 @@
-	
+ var config = {
+        apiKey: "AIzaSyAAUKZo69Oni3SZ2IHdM4d0D2Z5OkUfIMM",
+        authDomain: "train-scheduler-609dd.firebaseapp.com",
+        databaseURL: "https://train-scheduler-609dd.firebaseio.com",
+        projectId: "train-scheduler-609dd",
+        storageBucket: "train-scheduler-609dd.appspot.com",
+        messagingSenderId: "445767248728"
+    };
+    firebase.initializeApp(config);	
+
+    var database = firebase.database();
 
 	//Pseudo Code for making train scheduler
 
@@ -58,37 +68,20 @@
 
 
 
-	        var database = furebase.database();
-	        
-			database.ref().on("child_added", function(snapshot) {
+       
 
-                name = snapshot.val().name;
-                destination = snapshot.val().destination;
-                first = snapshot.val().first;
-                frequency = snapshot.val().frequency;
-                JSON.stringify(start);
-
-                createTableEntry(name, destination, first, frequency);
-            }, function(errorObject) {
-                console.log("The read failed: " + errorObject.code);
-            });
-
-
-	      
-
-	    $("#addChar").on("click", function(e) {
-	        e.preventDefault();
-
-	    });
+		database.ref().on("child_added", function(snapshot) {
+        }, function(errorObject) {
+      });
 
 
 	    $("#addChar").on("click", function(e) {
 	        e.preventDefault();
 
-	        var nameHolder = $("#name-input").val().trim();
-	        var destinationHolder = $("#destition-input").val().trim();
-	        var firstHolder = $("#first-input").val().trim();
-	        var frequencyHolder = $("#frequency-input").val().trim();
+	        var nameHolder = $("#name-input").val();
+	        var destinationHolder = $("#destination-input").val();
+	        var firstHolder = $("#first-input").val();
+	        var frequencyHolder = $("#frequency-input").val();
 
 
 	        database.ref().push({
