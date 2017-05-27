@@ -43,28 +43,11 @@
 	    row.append(minAwayCol);
 
 	    $("#main-table").append(row);
-
-
 	};
 
+	var m = moment();
+	console.log(m);
 
-
-	// function timeCalc(argument) {
-
-	//     var tFrequency =
-
-	        // var firstTime = 
-
-	        // var minutesTilTrain = 
-
-	        // First Time (pushed back 1 year to make sure it comes before current time)
-
-	        // var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
-	        // console.log(firstTimeConverted);
-
-	        //Set Current time
-	        // var currentTime = moment();
-	        // console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"))
 
 
 
@@ -75,11 +58,8 @@
        
 
 		database.ref().on("child_added", function(snapshot) {
-			console.log(snapshot.val());
         }, function(errorObject) {
-        	console.log("errors", errorObject);
       });
-
 
 
 	    $("#addChar").on("click", function(e) {
@@ -89,6 +69,13 @@
 	        var destinationHolder = $("#destination-input").val();
 	        var firstHolder = $("#first-input").val();
 	        var frequencyHolder = $("#frequency-input").val();
+
+	         firebase.database().ref().on("value", function(snapshot){
+			$("#name-input").html(snapshot.val().nameHolder);
+			$("#destination-input").html(snapshot.val().destinationHolder);
+			$("#first-input").html(snapshot.val().firstHolder);
+			$("#frequency-input").html(snapshot.val().frequencyHolder);
+
 
 
 	        database.ref().push({
@@ -100,4 +87,9 @@
 
 	        $('#theForm')[0].reset();
 
-	    });
+	       
+
+		});
+
+
+	 });
